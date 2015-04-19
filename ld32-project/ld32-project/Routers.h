@@ -121,11 +121,12 @@ private:
 
 class BigFlyerRouter : public Router {
 public:
-	BigFlyerRouter(float x, float y, int strong_frames) {
+	BigFlyerRouter(float x, float y, int strong_frames, int stay_frames = 30 * 60) {
 		x_ = x;
 		y_ = y;
 		state_ = 0;
 		fs_ = strong_frames;
+		stay_frames_ = stay_frames;
 	}
 
 	float GetX() const { return x_; }
@@ -145,6 +146,15 @@ public:
 			return true;
 		}
 
+		if (stay_frames_ <= 0) {
+			y_ -= 1;
+			if (y_ < -100) {
+				return false;
+			}
+			return true;
+		}
+
+		stay_frames_ -= 1;
 		x_ += vx_;
 		y_ += vy_;
 		if (x_ < 150) {
@@ -170,6 +180,7 @@ private:
 	float vy_;
 	int fs_;
 	int state_;
+	int stay_frames_;
 };
 
 /// --------------------------------------

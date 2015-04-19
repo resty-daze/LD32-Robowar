@@ -732,7 +732,7 @@ private:
 
 std::vector<sf::IntRect> EneBoss{ sf::IntRect(0, 0, 160, 100) };
 shared_ptr<Enemy> LevelDirector::CreateBoss() {
-	shared_ptr<Enemy> enemy = make_shared<Enemy>(1200, 130, tex::ufo, EneBoss, make_shared<BigFlyerRouter>(200, -100, 300), make_shared<BossShooter>(), true);
+	shared_ptr<Enemy> enemy = make_shared<Enemy>(1200, 130, tex::ufo, EneBoss, make_shared<BigFlyerRouter>(200, -100, 300, 60 * 100), make_shared<BossShooter>(), true);
 	game_->AddEnemy(enemy);
 	return enemy;
 }
